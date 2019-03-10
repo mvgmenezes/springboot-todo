@@ -28,7 +28,7 @@ public class TodoHardcodedService {
 	
 	public Todo save(Todo todo) {
 		//se chegou -1 é para incluir o todo na lista
-		if (todo.getId()==-1) {
+		if (todo.getId()==-1 || todo.getId()==0) {
 			todo.setId(++idCounter);
 			todos.add(todo);
 		}else {//realiza a alteracao 
