@@ -26,6 +26,21 @@ public class TodoHardcodedService {
 		
 	}
 	
+	public Todo save(Todo todo) {
+		//se chegou -1 é para incluir o todo na lista
+		if (todo.getId()==-1) {
+			todo.setId(++idCounter);
+			todos.add(todo);
+		}else {//realiza a alteracao 
+			
+			//fazendo a alteracao fake
+			deleteById(todo.getId());
+			todos.add(todo);
+			
+		}
+		return todo;
+	}
+	
 	public Todo deleteById(long id) {
 		Todo todo = findById(id);
 		
@@ -37,7 +52,7 @@ public class TodoHardcodedService {
 		return null;
 	}
 
-	private Todo findById(long id) {
+	public Todo findById(long id) {
 		
 		for(Todo todo:todos) {
 			if (todo.getId() == id) {
