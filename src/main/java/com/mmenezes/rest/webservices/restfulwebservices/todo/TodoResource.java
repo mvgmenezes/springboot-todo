@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class TodoResource {
 	
 	@Autowired
-	private TodoHardcodedService todoService;
+	private TodoHardcodedService todoService; 
 	
 	
 	@GetMapping("/users/{username}/todos")
