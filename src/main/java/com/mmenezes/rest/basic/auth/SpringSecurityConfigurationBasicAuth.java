@@ -1,4 +1,4 @@
-package com.mmenezes.rest.webservices.restfulwebservices.basic.auth;
+package com.mmenezes.rest.basic.auth;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;

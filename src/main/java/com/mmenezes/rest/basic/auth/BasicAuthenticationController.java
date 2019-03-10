@@ -1,4 +1,4 @@
-package com.mmenezes.rest.webservices.restfulwebservices.basic.auth;
+package com.mmenezes.rest.basic.auth;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
