@@ -43,30 +43,30 @@ public class TodoJPAResource {
 	
 	@DeleteMapping("/jpa/users/{username}/todos/{id}")
 	public ResponseEntity<Void> deleteTodo(@PathVariable String username, @PathVariable long id){
-		Todo todo = todoService.deleteById(id);
+		//Todo todo = todoService.deleteById(id);
 		
-		if (todo!= null) {
-			//como pode ter um retonro ou nao por ser uma variavel o retorno uso o ResponseEntity. 
-			return ResponseEntity.noContent().build();
-		}
+		todoJpaRepository.deleteById(id);
+		return ResponseEntity.noContent().build();
 		
-		return ResponseEntity.notFound().build();
 	}
 	
 	//requestbody pq retorna o todo no request.
 	@PutMapping("/jpa/users/{username}/todos/{id}")
 	public ResponseEntity<Todo> updateTodo(@PathVariable String username, @PathVariable long id, @RequestBody Todo todo){
 		
-		Todo todoUpdated = todoService.save(todo);
+		//Todo todoUpdated = todoService.save(todo);
+		Todo todoUpdated = todoJpaRepository.save(todo);
+		
 		return new ResponseEntity<Todo>(todo, HttpStatus.OK);
 	
 	}
 	
 	
 	@PostMapping("/jpa/users/{username}/todos")
-	public ResponseEntity<Void> updateTodo(@PathVariable String username, @RequestBody Todo todo){
+	public ResponseEntity<Void> createTodo(@PathVariable String username, @RequestBody Todo todo){
 		
-		Todo createdTodo = todoService.save(todo);
+		todo.setUsername(username);
+		Todo createdTodo = todoJpaRepository.save(todo);
 		
 		//Localizando o path atual e appendando o novo /id
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(createdTodo.getId()).toUri();
